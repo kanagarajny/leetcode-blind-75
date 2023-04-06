@@ -11,3 +11,24 @@ class Solution {
         
     }
 }
+
+
+// duplicate is definitely there want to return the duplicate
+
+class Solution {
+    public int containsDuplicate(int [] nums){
+        int slow = 0;
+        int fast = 0;
+        do{
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        }while(slow != fast)
+        
+        int fast = nums [0];
+        while(fast != slow){
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        return slow ;
+    }
+}
