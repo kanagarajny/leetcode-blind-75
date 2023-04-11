@@ -1,0 +1,24 @@
+
+0/5
+class Solution {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        Deque <Integer> deque = new ArrayDeque <>();
+        int n = nums.length;
+        int [] res = new int [n-k+1];
+        int j = 0;       
+        for (int i = 0; i < n; i++){
+            //removing the boundary case
+            while(! deque.isEmpty() && deque.peek() == i-k){
+                deque.poll();
+            }
+            //removing the smaller element from the deque
+            while(! deque.isEmpty() && nums[deque.peekLast()] < nums[i] ) deque.pollLast();
+            deque.offer (i);
+            if ( i >= k-1){
+                res[j] = nums[deque.peek()];
+                j++;
+            }
+        } return res;
+        
+    }
+}
